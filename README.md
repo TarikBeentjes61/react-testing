@@ -22,24 +22,24 @@ A full-stack web application for managing coding challenges, built with React (f
 
 1. **Clone the repository:**
 ```
-   git clone https://github.com/TarikBeentjes61/Coding-Challenges
+git clone https://github.com/TarikBeentjes61/Coding-Challenges
 ```
 2. **Install dependencies:**
 ```
-    npm install
+npm install
 ```
 3. **Set up environment variables:**
-   Create a .env file in the server/ directory for backend configuration (DB URI, JWT secret, etc.).
+Create a .env file in the server/ directory for backend configuration (DB URI, JWT secret, etc.).
 
-   Example:
-   ...
+Example:
+...
 
 4. **Start the backend server:**
 ```
-  node server/server.js
+node server/server.js
 ```
 5. **Start the frontend development server:**
 ```
-  npm start
+npm start
 ```
    
