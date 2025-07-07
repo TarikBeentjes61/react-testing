@@ -20,8 +20,7 @@ const email = Joi.string().email().required().messages({
   });
 const registerSchema = Joi.object({
   username: username,
-  password: password,
-  email: email,
+  password: password
 });
 
 const loginSchema = Joi.object({

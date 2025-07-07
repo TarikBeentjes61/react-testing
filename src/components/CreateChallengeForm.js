@@ -11,8 +11,8 @@ function CreateChallengeForm() {
   const { request: post, error } = useApiHandler('challenges', 'POST');
   const { request: postImage } = useApiHandler('uploads/challengeImage', 'POST');
   const { request: put } = useApiHandler('challenges', 'PUT');
-
   const tiptapRef = useRef();
+  const BASEURL = process.env.REACT_APP_URL || 'http://localhost:3001';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ function CreateChallengeForm() {
 
           const result = await postImage(form);
 
-          replaceSrcInDoc(doc, blobUrl, `${global.config.server.baseUrl}${result.url}`);
+          replaceSrcInDoc(doc, blobUrl, `${BASEURL}/${result.url}`);
       }
       const result = await put({
         challengeId,

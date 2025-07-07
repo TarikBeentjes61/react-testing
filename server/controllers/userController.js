@@ -11,7 +11,7 @@ exports.registerUser = async (req, res, next) => {
     }
     try {
         const newUser = await userService.registerUser(value);
-        const token = jwt.sign({ id: newUser._id }, JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: newUser._id }, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION || '1d' });
 
         res.status(201).json({ message: 'User registered successfully', token, user: newUser});
     } catch (error) {
@@ -40,7 +40,7 @@ exports.getUserProfile = async (req, res, next) => {
     }
     try {
         const user = await userService.getUserByName(username);
-        res.status(200).json({ user });
+        res.status(200).json(user);
     } catch (error) {
         next(error);
     }

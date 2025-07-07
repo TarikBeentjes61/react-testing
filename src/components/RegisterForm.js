@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
@@ -20,7 +19,7 @@ function RegisterForm() {
       return;
     }
 
-    const result = await post({ username, password, email });
+    const result = await post({ username, password });
     if (result) {
       localStorage.setItem('token', result.token);
       localStorage.setItem('user', JSON.stringify(result.user));
@@ -43,17 +42,6 @@ function RegisterForm() {
             value={username}
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-5">
-          <label for="username" className="block mb-2 text-sm font-medium">Email</label>
-          <input
-            className="bg-gray-150 border border-gray-400 text-sm rounded-lg block w-full p-2.5 dark:text-black"
-            type="email"
-            value={email}
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>

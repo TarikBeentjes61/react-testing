@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { convertToObjectId, getCurrentDate, formatUser } = require('../utils/utils');
 const ApiError = require('../utils/apiError');
 
-exports.registerUser = async ({username, email, password}) => {
+exports.registerUser = async ({username, password}) => {
     const usersCollection = getUsersCollection();
     const existing = await usersCollection.findOne({ username });
     if (existing) {
@@ -14,11 +14,8 @@ exports.registerUser = async ({username, email, password}) => {
     const userData = {
         username,
         password: hashed,
-        email: email,
         registerDate: date,
         lastLoggedIn: date,
-        bio: '',
-        profilePicture: '',
         reputation: 0
     }; 
     await usersCollection.insertOne(userData);
@@ -40,7 +37,7 @@ exports.loginUser = async ({ username, password }) => {
 }
 exports.getUserByName = async (username) => {
     const usersCollection = getUsersCollection();
-    const user = await usersCollection.findOne({ username: username});
+    const user = await usersCollection.findOne({ username });
     if (!user) {
         throw new ApiError('User not found', 404);
     }

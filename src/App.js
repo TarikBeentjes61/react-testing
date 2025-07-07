@@ -9,7 +9,6 @@ import SolveChallenge from './pages/SolveChallenge';
 import PageNotFound from './pages/PageNotFound';
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
-
 import './App.css';
 import PublicRoute from './components/PublicRoute';
 

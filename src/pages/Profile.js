@@ -4,15 +4,15 @@ import ChallengeTable from '../components/ChallengeTable';
 import useApiHandler from '../useApiHandler';
 import Loading from '../components/Loading.js';
 import Error from '../components/Error.js';
-import '../config.js';
 import PageNotFound from './PageNotFound.js';
 
 function Profile() {
     const { username } = useParams();
-    const { data: user, loading, error } = useApiHandler(`users/${username}`);
+    const { data: user, loading, error } = useApiHandler(`users/${username}`, 'GET');
     const { request: post, error: uploadError } = useApiHandler(`uploads/banner`, 'POST');
     const loggedInUser = JSON.parse(localStorage.getItem('user')) || '';
     const isOwner = loggedInUser?._id === user?._id;
+    const URL = process.env.REACT_APP_URL || 'http://localhost:3001';
 
     const [selectedTab, setSelectedTab] = useState('created'); 
     const tabs = [
@@ -43,12 +43,11 @@ function Profile() {
     if (loading) return <Loading />;
     if (error === "User not found") return <PageNotFound />
     if (error) return <Error message={error} />;
-
     if (user) return (
       <div className="bg-white dark:bg-neutral-800 text-black dark:text-white">
         <div className="relative w-full h-80">
           <img
-            src={`${global.config.server.baseUrl}uploads/users/${user._id}/banner.jpg`}
+            src={`${URL}/uploads/users/${user._id}/banner.jpg`}
             alt="Banner"
             className="w-full h-80 object-cover"
             onError={(e) => {

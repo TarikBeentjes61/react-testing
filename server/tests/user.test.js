@@ -4,7 +4,7 @@ describe('User API', () => {
   test('should register a new user', async () => {
     const res = await request(__TEST__.app)
       .post('/api/users/register')
-      .send({ username: 'newtestuser', password: 'newtestuser', email: 'newtestemail@test.com' });
+      .send({ username: 'newtestuser', password: 'newtestuser' });
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty('user');
   });
@@ -36,6 +36,6 @@ describe('User API', () => {
       .get(`/api/users/${__TEST__.user.username}`)
       .set('Authorization', `Bearer ${__TEST__.user.token}`);
     expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty('user');
+    expect(res.body).toHaveProperty('_id');
   });
 });

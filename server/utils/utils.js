@@ -17,14 +17,11 @@ function getCurrentDate() {
 
 function formatUser(user) {
     return {
+        _id: user._id,
         username: user.username,
         registerDate: user.registerDate,
-        bio: user.bio || '',
-        profilePicture: user.profilePicture || '',
         lastLoggedIn: user.lastLoggedIn,
         reputation: user.reputation || 0,
-        banner: user.banner || '',
-        _id: user._id
     };
 }
 

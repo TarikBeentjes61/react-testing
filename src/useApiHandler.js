@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 
 function useApiHandler(url, method = 'GET', queryParams = {}) {
   const [data, setData] = useState(null);
@@ -44,7 +44,6 @@ function useApiHandler(url, method = 'GET', queryParams = {}) {
       const responseData = contentType?.includes('application/json')
         ? await res.json()
         : null;
-
       setData(responseData);
       return responseData;
     } catch (err) {
